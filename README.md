@@ -2,4 +2,4 @@
 
 personal neovim rice
 
-initially derived from link [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
+initially derived from [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
