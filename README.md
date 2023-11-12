@@ -1,2 +1,2 @@
-# nvim-config
+# nvim
 personal neovim rice
