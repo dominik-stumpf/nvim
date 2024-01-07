@@ -57,7 +57,7 @@ require("lazy").setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { "folke/which-key.nvim", opts = {} },
+  { "folke/which-key.nvim",  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
@@ -182,7 +182,6 @@ require("lazy").setup({
   },
 
   require "custom.plugins.autoformat",
-  require "custom.plugins.write-it-down",
 
   {
     "windwp/nvim-autopairs",
@@ -473,7 +472,14 @@ local servers = {
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  -- tsserver = {},
+  tsserver = {},
+  tailwindcss = {},
+  biome = {},
+  taplo = {},
+  rust_analyzer = {},
+  pylsp = {},
+  cssls = {},
+  wgsl_analyzer = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
@@ -560,3 +566,5 @@ cmp.setup {
 
 -- remove auto commenting
 vim.api.nvim_command "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
+
+require "custom.plugins.write-it-down"
