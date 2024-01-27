@@ -17,6 +17,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+
   -- git related plugins
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
@@ -256,8 +257,7 @@ vim.o.expandtab = true
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>n", "<cmd>NnnExplore<cr>")
+vim.keymap.set("n", "<leader>n", vim.cmd.Ex)
 
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -567,4 +567,33 @@ cmp.setup {
 -- remove auto commenting
 vim.api.nvim_command "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
 
-require "custom.plugins.write-it-down"
+local function write_it_down_plugin()
+  local write_delay_ms = 40
+  vim.api.nvim_create_user_command("WriteItDown", function()
+    print "yes sir."
+
+    local current_bufnr = vim.fn.bufnr "%"
+    local buffer_content = vim.fn.getbufline(current_bufnr, 1, "$")
+
+    for lineIndex in ipairs(buffer_content) do
+      vim.fn.setbufline(current_bufnr, lineIndex, "")
+    end
+
+    local iteration_count = 0
+    for line_index, line in ipairs(buffer_content) do
+      local line_progress = ""
+      for char_index = 1, #line do
+        local char = line:sub(char_index, char_index)
+
+        vim.fn.timer_start(iteration_count * write_delay_ms, function()
+          line_progress = line_progress .. char
+          vim.fn.setbufline(current_bufnr, line_index, line_progress)
+        end)
+
+        iteration_count = iteration_count + 1
+      end
+    end
+  end, {})
+end
+
+write_it_down_plugin()
