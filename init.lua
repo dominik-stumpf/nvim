@@ -106,7 +106,7 @@ require("lazy").setup({
     "metalelf0/base16-black-metal-scheme",
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme "base16-black-metal"
+      vim.cmd.colorscheme "base16-black-metal-immortal"
     end,
   },
   {
@@ -123,14 +123,14 @@ require("lazy").setup({
     },
   },
 
-  {
-    -- Add indentation guides even on blank lines
-    "lukas-reineke/indent-blankline.nvim",
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
-    main = "ibl",
-    opts = {},
-  },
+  -- {
+  --   -- Add indentation guides even on blank lines
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   -- Enable `lukas-reineke/indent-blankline.nvim`
+  --   -- See `:help ibl`
+  --   main = "ibl",
+  --   opts = {},
+  -- },
 
   -- "gc" to comment visual regions/lines
   { "numToStr/Comment.nvim", opts = {} },
